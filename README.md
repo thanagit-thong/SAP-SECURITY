@@ -8,26 +8,29 @@ A community-driven repository of SAP Security, Authorization, Basis Security, Cl
 # Table of Contents 
 - [Introduction](#introduction)
 - Security Governance
-- Identity-and-access-management
+- Identity and Access Management
 - Authorization Management
-- Authentication Security]
+- Authentication Security
 - SAP Basis Security
 - SAP Hana Security
 - SAP Fiori Security
 - SAP BTP Security
 - SAP Cloud Application Security
-- [x] Cloud-security-checklist.md
+  - [X] Cloud-security-checklist.md
+  - [X] Security on SAP ECS(RISE) 
 - API and Integration Security
 - Monitoring and Threat Detection
 - Vulnerability and Patch Management
 - AI Security for SAP
 - Incident Response
 - SAP Security Baselines
-- [x] sap-security-baseline.md
-- [x] system-hardening-checklist.md
+  - [x] sap-security-baseline.md
+  - [x] system-hardening-checklist.md
 - [SAP Security Plaform](#sap-security-platform)
 - [SAP Security Community and Knowledge Sources](#sap-security-community-and-knowledge-sources)
 - [Quick Reference Library](#quick-reference-library) 
+- [Contributing](#contributing)
+- [Disclaimer](#disclaimer)
 
 ---
 # Introduction
@@ -570,11 +573,7 @@ auth/rfc_authority_check
 
 # Security Baselines
 
-## SAP ECC Security Baseline
-
 ## SAP S/4HANA Security Baseline
-
-## SAP NetWeaver Security Baseline
 
 ## SAP HANA Security Baseline
 
@@ -592,9 +591,11 @@ auth/rfc_authority_check
 
 ### SAC
 
+### Joule
+
 ---
 # SAP Security Platform
-## SecurtityBridge
+## SecurityBridge
 ## Onapsis
 
 ---
@@ -709,10 +710,7 @@ RSPFPAR
 
 ---
 
-# License
-**CC BY-SA 4.0**
-
-## Disclaimer
+# Disclaimer
 
 > This repository is provided for educational and informational purposes only.
 > All content is provided "AS IS" without warranty of any kind.

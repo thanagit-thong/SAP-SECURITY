@@ -151,19 +151,29 @@ A community-driven repository of SAP Security, Authorization, Basis Security, Cl
 ## Role Design Standards
 
 ### Single Roles
+Task/Functional Roles (Single Roles) is the atomic unit of role design. 
+A role contains a limited, highly specific set of transaction codes (T-codes) or Web Dynpros required to perform exactly one business task (e.g., Maintain Vendor Master or Approve Purchase Orders).
 
 ### Composite Roles
+Real-world business titles mapped to HR profiles. 
+A composite role contains zero native transactions. 
+It acts purely as a container bundling multiple Functional and Enabler roles together (e.g., "US Accounts Payable Clerk")
 
-### Derived Roles
+### Conceptual Framework: Parent vs Child (Master Roles vs Derived Roles)
+The Master and Derived Role methodology is a native inheritance framework within the SAP Profile Generator (PFCG). 
+It serves as an alternative approach to the 3-Tier (Enabler) model. 
+This design is highly effective for organizations with low-to-medium organizational variation across locations, 
+as it structures roles through a parent-child template relationship.
 
-## Naming Conventions
+**Master Role (The Parent/Template):** 
+This role defines what a user can do. It houses the menus, Transaction Codes (T-codes), reports, Web Dynpros, and authorization objects. 
+Crucially, organizational levels (such as Company Code, Plant, or Sales Organization) are left blank or unmaintained. Master roles must never be directly assigned to end-users.
 
-```text
-Z_BASIS_ADMIN
-Z_FI_ACCOUNTANT
-Z_SD_DISPLAY
-Z_HR_APPROVER
-```
+**Derived Role (The Child/Instance):** 
+This role inherits the exact functional layout (menus, T-codes, objects) from its designated Master role. 
+The only components defined uniquely inside a Derived role are its explicit Organizational Levels. 
+When a Master role is updated and pushed, it overwrites the authorizations of all child roles while preserving their unique location data.
+
 
 ## Critical Authorization Objects
 

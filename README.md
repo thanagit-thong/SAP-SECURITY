@@ -610,6 +610,7 @@ SAP provides [SAP BTP Security Recommendations](https://help.sap.com/docs/btp/sa
 - [x] [SecurityBridge](https://securitybridge.com/)
 - [x] [Onapsis](https://onapsis.com/)
 - [x] [Layer7](https://www.layersevensecurity.com/)
+- [X] [Xiting](https://xiting.com/en/)
 - [X] [SAP Enterprise Threat Detection (ETD)](https://www.sap.com/products/financial-management/enterprise-threat-detection.html)
 - [X] [SAP Cloud ALM - CSA](https://support.sap.com/en/alm/sap-cloud-alm/operations/expert-portal/configuration-security-analysis/csa-content.html?isu_page=1)
 

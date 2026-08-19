@@ -320,6 +320,8 @@ auth/rfc_authority_check
 ---
 
 # SAP BTP Security
+## Guideline
+SAP provides [SAP BTP Security Recommendations](https://help.sap.com/docs/btp/sap-btp-security-recommendations-c8a9bb59fe624f0981efa0eff2497d7d/sap-btp-security-recommendations) at 304 topics (as of 08/2026) to harden BTP . It can be mapped with Secure Operations Map as well.
 
 ## Global Account Security
 
@@ -595,8 +597,40 @@ auth/rfc_authority_check
 
 ---
 # SAP Security Platform
-## [SecurityBridge](https://securitybridge.com/)
-## [Onapsis](https://onapsis.com/)
+- [x] [SecurityBridge](https://securitybridge.com/)
+- [x] [Onapsis](https://onapsis.com/)
+- [x] [Layer7](https://www.layersevensecurity.com/)
+- [X] [SAP Enterprise Threat Detection (ETD)](https://www.sap.com/products/financial-management/enterprise-threat-detection.html)
+
+Traditional cyber security tools are blind to the inner workings of an SAP ecosystem.
+
+Standard security solutions (like generic Firewalls, Antivirus, or traditional SIEMs) monitor network traffic and operating systems but cannot read or interpret SAP-specific protocols (like RFC, DIAG), application logs, or ABAP code. Without a dedicated SAP security platform, your core business data sits in a massive security blind spot.
+
+Here is a detailed breakdown of why these platforms are necessary to safeguard an SAP environment:
+
+### 1. Eliminating the Security Blind Spot (Context-Aware Monitoring)
+- **SAP Logs are Cryptic:** SAP generates massive volumes of proprietary logs. 
+Traditional SIEMs cannot contextualize this data, leading to missed critical events or overwhelming "alert fatigue.
+- **Log Enrichment:** Some platforms specialize in parsing, correlation, and translating complex SAP logs into actionable security insights that your main Security Operations Center (SOC) can actually understand.
+
+### 2. Securing Custom Code (ABAP Security)
+- **The Backdoor Risk:** Most enterprises write millions of lines of custom code (ABAP) to tailor SAP to their business.
+Traditional application security scanners cannot analyze ABAP code for vulnerabilities.
+- **DevSecOps Integration:** Tools like SecurityBridge and Layer Seven Security scan custom code during development and before it hits production, preventing developers from accidentally introducing vulnerabilities, data leaks, or malicious backdoors.
+
+### 3. Real-Time Threat Detection & Behavioral Analysis
+- **Insider Threats:** A large portion of SAP breaches involve internal users abusing high privileges or executing unauthorized data downloads.
+- **Exploit Prevention:** These platforms look for anomalous behavior, such as sudden privilege escalation or unauthorized Remote Function Calls (RFC).
+For unpatched systems, some platforms offer "virtual patching" to block known exploits at the network level until a permanent SAP Note can be applied.
+
+### 4. Automated Vulnerability & Patch Management
+- **Complexity of SAP Notes:** SAP releases security patches (SAP Security Notes) every month.
+Manually reviewing, testing, and applying these across dozens of SAP landscapes is time-consuming.
+- **Continuous Assessment:** These platforms automatically scan your entire SAP landscape for misconfigurations, default passwords, open ports, and missing patches, prioritizing them based on actual business risk.
+
+### 5. Continuous Audit & Compliance (SOX, GDPR, NIS2)
+- **Automated Evidence Collection:** Preparing for a financial or data privacy audit manually takes weeks of extracting tables and user lists.
+- **Segregation of Duties (SoD):** These platforms continuously monitor compliance frameworks, ensuring that users do not have conflicting roles (e.g., the ability to both create a vendor and approve a payment) and flag unauthorized emergency access (Firefighter IDs) instantly.
 
 ---
 # SAP Security Community and Knowledge Sources

@@ -595,16 +595,20 @@ auth/rfc_authority_check
 
 ---
 # SAP Security Platform
-## SecurityBridge
-## Onapsis
+## [SecurityBridge](https://securitybridge.com/)
+## [Onapsis](https://onapsis.com/)
 
 ---
 # SAP Security Community and Knowledge Sources
-[x] SAP Insider
-[X] [SAP Security Forum](https://pages.community.sap.com/topics/security)
-
-
-
+- [x] [SAP Insider](https://copenhagen.sapinsider.org/)
+- [X] [SAP Security Forum](https://pages.community.sap.com/topics/security)
+- [X] Recommended articles:
+  - [SAP Security Awareness: The Control You Can’t Configure](https://www.linkedin.com/pulse/sap-security-awareness-control-you-cant-configure-peter-doyle-tnnle/)
+  - [SAP Security: The Foundation of Secure and Compliant SAP Landscapes](https://www.linkedin.com/pulse/sap-security-foundation-secure-compliant-landscapes-sonawane-hc17f/)
+  - [Beyond Compliance: SAP Security as Strategic Advantage](https://www.linkedin.com/pulse/beyond-compliance-sap-security-strategic-advantage-jarod-sandham-9fsue/)
+  - [Why I’m Writing About SAP Security (and What I’ll Focus On)](https://www.linkedin.com/pulse/why-im-writing-sap-security-what-ill-focus-peter-doyle-46kpe/)
+  - [Hardening SAP: The 10 Most Common Misconfigurations (and How to Fix Them)](https://www.linkedin.com/pulse/hardening-sap-10-most-common-misconfigurations-how-fix-peter-doyle-ympue/)
+    
 ---
 # Checklists and Templates
 

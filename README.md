@@ -17,7 +17,7 @@ A community-driven repository of SAP Security, Authorization, Basis Security, Cl
 - SAP BTP Security
 - SAP Cloud Application Security
   - [X] Cloud-security-checklist.md
-  - [X] Security on SAP ECS(RISE) 
+  - [X] Security on SAP ECS (RISE) 
 - API and Integration Security
 - Monitoring and Threat Detection
 - Vulnerability and Patch Management
@@ -26,7 +26,7 @@ A community-driven repository of SAP Security, Authorization, Basis Security, Cl
 - SAP Security Baselines
   - [x] sap-security-baseline.md
   - [x] system-hardening-checklist.md
-- [SAP Security Plaform](#sap-security-platform)
+- [SAP Security Platform](#sap-security-platform)
 - [SAP Security Community and Knowledge Sources](#sap-security-community-and-knowledge-sources)
 - [Quick Reference Library](#quick-reference-library) 
 - [Contributing](#contributing)
@@ -173,6 +173,7 @@ Crucially, organizational levels (such as Company Code, Plant, or Sales Organiza
 This role inherits the exact functional layout (menus, T-codes, objects) from its designated Master role. 
 The only components defined uniquely inside a Derived role are its explicit Organizational Levels. 
 When a Master role is updated and pushed, it overwrites the authorizations of all child roles while preserving their unique location data.
+
 
 ## Critical Authorization Objects
 
@@ -329,6 +330,8 @@ auth/rfc_authority_check
 ---
 
 # SAP BTP Security
+## Guideline
+SAP provides [SAP BTP Security Recommendations](https://help.sap.com/docs/btp/sap-btp-security-recommendations-c8a9bb59fe624f0981efa0eff2497d7d/sap-btp-security-recommendations) at 304 topics (as of 08/2026) to harden BTP . It can be mapped with Secure Operations Map as well.
 
 ## Global Account Security
 
@@ -349,6 +352,40 @@ auth/rfc_authority_check
 ---
 
 # SAP Cloud Application Security
+- [X] Cloud-security-checklist.md
+
+- [X] Security on SAP ECS (RISE)
+
+## LogServ & RAVEN
+
+### LogServ
+Referring to this [nice article by Jatin Tiwari](https://www.linkedin.com/posts/jatin-tiwari999_sap-logserv-sap-logserv-is-an-optional-share-7405256037907234817-EDwl/)
+```text
+SAP LogServ is an optional RISE with SAP / SAP Enterprise Cloud Services (ECS) offering that centralizes infrastructure, OS, database, and SAP layer logs and forwards them to your SIEM or log platform; enablement mainly revolves around contracting it, selecting log scope, and integrating with tools like Microsoft Sentinel or Splunk. 
+
+What SAP LogServ ✔️  
+SAP LogServ is an ECS service for collection, storage, forwarding, and access of logs from all SAP-managed systems in RISE with SAP (OS, DB, application, network, etc.).​
+It is purchased as an additional managed service on top of RISE and is intended to restore the log visibility customers lose when SAP operates the infrastructure layer.​
+
+```
+How ECS Security Portal looks like:
+<img width="1467" height="625" alt="image" src="https://github.com/user-attachments/assets/a27135f8-3f4b-449d-b859-781129850a0e" />
+
+Sample log from LogServ in JSON:
+<img width="1687" height="307" alt="image" src="https://github.com/user-attachments/assets/525221ca-e7a7-477a-b193-ea647f01a489" />
+
+more information about [LogServe](https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-members/ultimate-blog-series-sap-logserv-integration-with-microsoft-sentinel/ba-p/14126401)
+
+## RAVEN (Risk and Vulnerability Engine)
+
+Sample Dashboard from RAVEN:
+<img width="1681" height="586" alt="image" src="https://github.com/user-attachments/assets/507c127c-8992-4813-91e2-8c4f11f4827d" />
+<img width="1680" height="835" alt="image" src="https://github.com/user-attachments/assets/fad5602a-f360-47b8-b6b3-d700e297a055" />
+<img width="1689" height="802" alt="image" src="https://github.com/user-attachments/assets/0969b463-a875-45d2-8c43-148743125f1b" />
+<img width="1693" height="767" alt="image" src="https://github.com/user-attachments/assets/313d4a91-c0f6-4a46-8e02-8845aa076ee0" />
+<img width="1571" height="705" alt="image" src="https://github.com/user-attachments/assets/1affb659-7e20-41cc-a510-b4b4f1eafaa6" />
+
+<sub>*Image Source: SAP Security Web Cast - LogServ&Raven Demo 20.08.2026*</sub>
 
 ## SAP SuccessFactors
 
@@ -604,16 +641,74 @@ auth/rfc_authority_check
 
 ---
 # SAP Security Platform
-## SecurityBridge
-## Onapsis
+- [x] [SecurityBridge](https://securitybridge.com/)
+- [x] [Onapsis](https://onapsis.com/)
+- [x] [Layer7](https://www.layersevensecurity.com/)
+- [X] [Xiting](https://xiting.com/en/)
+- [X] [SAP Enterprise Threat Detection (ETD)](https://www.sap.com/products/financial-management/enterprise-threat-detection.html)
+- [X] [SAP Cloud ALM - CSA](https://support.sap.com/en/alm/sap-cloud-alm/operations/expert-portal/configuration-security-analysis/csa-content.html?isu_page=1)
+
+## ADVANTAGE OF HAVING EXTRA PLATFORM  
+Traditional cyber security tools are blind to the inner workings of an SAP ecosystem.
+Standard security solutions (like generic Firewalls, Antivirus, or traditional SIEMs) monitor network traffic and operating systems but cannot read or interpret SAP-specific protocols (like RFC, DIAG), application logs, or ABAP code. Without a dedicated SAP security platform, your core business data sits in a massive security blind spot.
+
+Here is a detailed breakdown of why these platforms are necessary to safeguard an SAP environment:
+
+### 1. Eliminating the Security Blind Spot (Context-Aware Monitoring)
+- **SAP Logs are Cryptic:** SAP generates massive volumes of proprietary logs. 
+Traditional SIEMs cannot contextualize this data, leading to missed critical events or overwhelming "alert fatigue.
+- **Log Enrichment:** Some platforms specialize in parsing, correlation, and translating complex SAP logs into actionable security insights that your main Security Operations Center (SOC) can actually understand.
+
+### 2. Securing Custom Code (ABAP Security)
+- **The Backdoor Risk:** Most enterprises write millions of lines of custom code (ABAP) to tailor SAP to their business.
+Traditional application security scanners cannot analyze ABAP code for vulnerabilities.
+- **DevSecOps Integration:** Tools like SecurityBridge and Layer Seven Security scan custom code during development and before it hits production, preventing developers from accidentally introducing vulnerabilities, data leaks, or malicious backdoors.
+
+### 3. Real-Time Threat Detection & Behavioral Analysis
+- **Insider Threats:** A large portion of SAP breaches involve internal users abusing high privileges or executing unauthorized data downloads.
+- **Exploit Prevention:** These platforms look for anomalous behavior, such as sudden privilege escalation or unauthorized Remote Function Calls (RFC).
+For unpatched systems, some platforms offer "virtual patching" to block known exploits at the network level until a permanent SAP Note can be applied.
+
+### 4. Automated Vulnerability & Patch Management
+- **Complexity of SAP Notes:** SAP releases security patches (SAP Security Notes) every month.
+Manually reviewing, testing, and applying these across dozens of SAP landscapes is time-consuming.
+- **Continuous Assessment:** These platforms automatically scan your entire SAP landscape for misconfigurations, default passwords, open ports, and missing patches, prioritizing them based on actual business risk.
+
+### 5. Continuous Audit & Compliance (SOX, GDPR, NIS2)
+- **Automated Evidence Collection:** Preparing for a financial or data privacy audit manually takes weeks of extracting tables and user lists.
+- **Segregation of Duties (SoD):** These platforms continuously monitor compliance frameworks, ensuring that users do not have conflicting roles (e.g., the ability to both create a vendor and approve a payment) and flag unauthorized emergency access (Firefighter IDs) instantly.
+
+## HOW TO KICKSTART
+If you have budget constraint, or you are a lone wolf in SAP Security Operations, starting with [SAP Cloud ALM CSA (Configuration & Security Analysis)](https://support.sap.com/en/alm/sap-cloud-alm/operations.html?isu_page=1&anchorId=section_881666798) is a low hanging fruit without surprise invoice after you.
+Cloud ALM is free (until certain level) with low configuration effort. 
+Check out [Note 3499485](https://me.sap.com/notes/0003499485):
+```text
+-------------------------------------------
+What is the cost of SAP Cloud ALM?
+-------------------------------------------
+  No license or subscription fee is required for SAP Cloud ALM. According to the usage rights, customers with 
+SAP Cloud Service subscriptions containing Enterprise Support, cloud editions, with SAP Enterprise Support, 
+or with Product Support for Large Enterprises are entitled to use one SAP Cloud ALM tenant per customer 
+number free of charge. This includes a baseline of 24 GB SAP HANA Memory and a baseline of 24 GB 
+monthly outbound API data transfer. 
+```
+
+Up until the demand from corporate cybersecurity and/or ITGC auditor is higher, 
+.. or your SAP Security Operations team grow up, 
+.. or you encounter with cybersecurity challenges which force you to go beyonds what Cloud ALM can serve.  
+Then it's time to change your tool on hands to be anything more advance like SecurityBridge, Onapsis, Layer7, ETD, etc.
 
 ---
 # SAP Security Community and Knowledge Sources
-[x] SAP Insider
-[X] [SAP Security Forum](https://pages.community.sap.com/topics/security)
-
-
-
+- [x] [SAP Insider](https://copenhagen.sapinsider.org/)
+- [X] [SAP Security Forum](https://pages.community.sap.com/topics/security)
+- [X] Recommended articles:
+  - [SAP Security Awareness: The Control You Can’t Configure](https://www.linkedin.com/pulse/sap-security-awareness-control-you-cant-configure-peter-doyle-tnnle/)
+  - [SAP Security: The Foundation of Secure and Compliant SAP Landscapes](https://www.linkedin.com/pulse/sap-security-foundation-secure-compliant-landscapes-sonawane-hc17f/)
+  - [Beyond Compliance: SAP Security as Strategic Advantage](https://www.linkedin.com/pulse/beyond-compliance-sap-security-strategic-advantage-jarod-sandham-9fsue/)
+  - [Why I’m Writing About SAP Security (and What I’ll Focus On)](https://www.linkedin.com/pulse/why-im-writing-sap-security-what-ill-focus-peter-doyle-46kpe/)
+  - [Hardening SAP: The 10 Most Common Misconfigurations (and How to Fix Them)](https://www.linkedin.com/pulse/hardening-sap-10-most-common-misconfigurations-how-fix-peter-doyle-ympue/)
+    
 ---
 # Checklists and Templates
 
@@ -638,6 +733,7 @@ auth/rfc_authority_check
 ---
 
 # Quick Reference Library
+- [x] [Note 2191612_: Use of Security Audit Log as of NetWeaver 7.50](https://me.sap.com/notes/2191612)
 
 ## Critical Transactions
 
@@ -653,6 +749,7 @@ SCC4
 SE16N
 SE38
 SA38
+RSAU_CONFIG
 RZ10
 RZ11
 STMS

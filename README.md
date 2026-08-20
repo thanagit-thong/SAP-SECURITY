@@ -699,6 +699,7 @@ Then it's time to change your tool on hands to be anything more advance like Sec
 ---
 
 # Quick Reference Library
+- [x] [Note 2191612_: Use of Security Audit Log as of NetWeaver 7.50](https://me.sap.com/notes/2191612)
 
 ## Critical Transactions
 
@@ -714,6 +715,7 @@ SCC4
 SE16N
 SE38
 SA38
+RSAU_CONFIG
 RZ10
 RZ11
 STMS

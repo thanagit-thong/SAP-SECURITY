@@ -17,7 +17,7 @@ A community-driven repository of SAP Security, Authorization, Basis Security, Cl
 - SAP BTP Security
 - SAP Cloud Application Security
   - [X] Cloud-security-checklist.md
-  - [X] Security on SAP ECS(RISE) 
+  - [X] Security on SAP ECS (RISE) 
 - API and Integration Security
 - Monitoring and Threat Detection
 - Vulnerability and Patch Management
@@ -26,7 +26,7 @@ A community-driven repository of SAP Security, Authorization, Basis Security, Cl
 - SAP Security Baselines
   - [x] sap-security-baseline.md
   - [x] system-hardening-checklist.md
-- [SAP Security Plaform](#sap-security-platform)
+- [SAP Security Platform](#sap-security-platform)
 - [SAP Security Community and Knowledge Sources](#sap-security-community-and-knowledge-sources)
 - [Quick Reference Library](#quick-reference-library) 
 - [Contributing](#contributing)
@@ -352,6 +352,25 @@ SAP provides [SAP BTP Security Recommendations](https://help.sap.com/docs/btp/sa
 ---
 
 # SAP Cloud Application Security
+- [X] Cloud-security-checklist.md
+
+- [X] Security on SAP ECS (RISE)
+
+## LogServ & RAVEN
+Referring to this [nice article by Jatin Tiwari](https://www.linkedin.com/posts/jatin-tiwari999_sap-logserv-sap-logserv-is-an-optional-share-7405256037907234817-EDwl/)
+```text
+SAP LogServ is an optional RISE with SAP / SAP Enterprise Cloud Services (ECS) offering that centralizes infrastructure, OS, database, and SAP layer logs and forwards them to your SIEM or log platform; enablement mainly revolves around contracting it, selecting log scope, and integrating with tools like Microsoft Sentinel or Splunk. 
+
+What SAP LogServ ✔️  
+SAP LogServ is an ECS service for collection, storage, forwarding, and access of logs from all SAP-managed systems in RISE with SAP (OS, DB, application, network, etc.).​
+It is purchased as an additional managed service on top of RISE and is intended to restore the log visibility customers lose when SAP operates the infrastructure layer.​
+
+```
+<img width="1467" height="625" alt="image" src="https://github.com/user-attachments/assets/a27135f8-3f4b-449d-b859-781129850a0e" />
+
+Sample log from LogServ in JSON:
+<img width="1687" height="307" alt="image" src="https://github.com/user-attachments/assets/525221ca-e7a7-477a-b193-ea647f01a489" />
+
 
 ## SAP SuccessFactors
 

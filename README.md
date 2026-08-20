@@ -357,6 +357,8 @@ SAP provides [SAP BTP Security Recommendations](https://help.sap.com/docs/btp/sa
 - [X] Security on SAP ECS (RISE)
 
 ## LogServ & RAVEN
+
+### LogServ
 Referring to this [nice article by Jatin Tiwari](https://www.linkedin.com/posts/jatin-tiwari999_sap-logserv-sap-logserv-is-an-optional-share-7405256037907234817-EDwl/)
 ```text
 SAP LogServ is an optional RISE with SAP / SAP Enterprise Cloud Services (ECS) offering that centralizes infrastructure, OS, database, and SAP layer logs and forwards them to your SIEM or log platform; enablement mainly revolves around contracting it, selecting log scope, and integrating with tools like Microsoft Sentinel or Splunk. 
@@ -366,11 +368,24 @@ SAP LogServ is an ECS service for collection, storage, forwarding, and access of
 It is purchased as an additional managed service on top of RISE and is intended to restore the log visibility customers lose when SAP operates the infrastructure layer.​
 
 ```
+How ECS Security Portal looks like:
 <img width="1467" height="625" alt="image" src="https://github.com/user-attachments/assets/a27135f8-3f4b-449d-b859-781129850a0e" />
 
 Sample log from LogServ in JSON:
 <img width="1687" height="307" alt="image" src="https://github.com/user-attachments/assets/525221ca-e7a7-477a-b193-ea647f01a489" />
 
+more information about [LogServe](https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-members/ultimate-blog-series-sap-logserv-integration-with-microsoft-sentinel/ba-p/14126401)
+
+## RAVEN (Risk and Vulnerability Engine)
+
+Sample Dashboard from RAVEN:
+<img width="1681" height="586" alt="image" src="https://github.com/user-attachments/assets/507c127c-8992-4813-91e2-8c4f11f4827d" />
+<img width="1680" height="835" alt="image" src="https://github.com/user-attachments/assets/fad5602a-f360-47b8-b6b3-d700e297a055" />
+<img width="1689" height="802" alt="image" src="https://github.com/user-attachments/assets/0969b463-a875-45d2-8c43-148743125f1b" />
+<img width="1693" height="767" alt="image" src="https://github.com/user-attachments/assets/313d4a91-c0f6-4a46-8e02-8845aa076ee0" />
+<img width="1571" height="705" alt="image" src="https://github.com/user-attachments/assets/1affb659-7e20-41cc-a510-b4b4f1eafaa6" />
+
+<sub>*Image Source: SAP Security Web Cast - LogServ&Raven Demo 20.08.2026*</sub>
 
 ## SAP SuccessFactors
 

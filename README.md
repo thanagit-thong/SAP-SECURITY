@@ -368,6 +368,8 @@ SAP LogServ is an ECS service for collection, storage, forwarding, and access of
 It is purchased as an additional managed service on top of RISE and is intended to restore the log visibility customers lose when SAP operates the infrastructure layer.​
 
 ```
+SAP provided [LogServ introduction video](https://sapvideo.cfapps.eu10-004.hana.ondemand.com/?entry_id=1_4gufcxqa) (57m) as well 
+
 How ECS Security Portal looks like:
 <img width="1467" height="625" alt="image" src="https://github.com/user-attachments/assets/a27135f8-3f4b-449d-b859-781129850a0e" />
 

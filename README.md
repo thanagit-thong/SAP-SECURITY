@@ -357,6 +357,7 @@ SAP provides [SAP BTP Security Recommendations](https://help.sap.com/docs/btp/sa
 - [X] Security on SAP ECS (RISE)
 
 ## LogServ & RAVEN
+<img width="1192" height="655" alt="image" src="https://github.com/user-attachments/assets/08e05d92-3806-4b6a-b1c3-a37fc23473f1" />
 
 ### LogServ
 Referring to this [nice article by Jatin Tiwari](https://www.linkedin.com/posts/jatin-tiwari999_sap-logserv-sap-logserv-is-an-optional-share-7405256037907234817-EDwl/)

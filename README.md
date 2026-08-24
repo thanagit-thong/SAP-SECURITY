@@ -20,7 +20,7 @@ A community-driven repository of SAP Security, Authorization, Basis Security, Cl
   - [X] Security on SAP ECS (RISE) 
 - API and Integration Security
 - Monitoring and Threat Detection
-- Vulnerability and Patch Management
+- [Vulnerability and Patch Management](#vulnerability-and-patch-management)
 - AI Security for SAP
 - Incident Response
 - SAP Security Baselines
@@ -357,6 +357,7 @@ SAP provides [SAP BTP Security Recommendations](https://help.sap.com/docs/btp/sa
 - [X] Security on SAP ECS (RISE)
 
 ## LogServ & RAVEN
+<img width="1192" height="655" alt="image" src="https://github.com/user-attachments/assets/08e05d92-3806-4b6a-b1c3-a37fc23473f1" />
 
 ### LogServ
 Referring to this [nice article by Jatin Tiwari](https://www.linkedin.com/posts/jatin-tiwari999_sap-logserv-sap-logserv-is-an-optional-share-7405256037907234817-EDwl/)
@@ -368,6 +369,8 @@ SAP LogServ is an ECS service for collection, storage, forwarding, and access of
 It is purchased as an additional managed service on top of RISE and is intended to restore the log visibility customers lose when SAP operates the infrastructure layer.​
 
 ```
+SAP provided [LogServ introduction video](https://sapvideo.cfapps.eu10-004.hana.ondemand.com/?entry_id=1_4gufcxqa) (57m) as well 
+
 How ECS Security Portal looks like:
 <img width="1467" height="625" alt="image" src="https://github.com/user-attachments/assets/a27135f8-3f4b-449d-b859-781129850a0e" />
 
@@ -477,29 +480,77 @@ Sample Dashboard from RAVEN:
 
 # Vulnerability and Patch Management
 
+Continuous review of system Vulnerability and Patch Management promotes ISO 27001 framework:
+- Vulnerability management
+- Patch management
+- Secure operations
+
+
 ## Security Notes Management
 
-### Discovery
+### STEP 1: Discovery
+The objective is to understand the current security posture, identify missing SAP Security Notes (patches), assess risks, and establish a remediation strategy before implementation.
+The primary goals are:
 
-### Risk Assessment
+- Identify all SAP systems in scope.
+- Determine current patch levels.
+- Discover missing SAP Security Notes.
+- Identify vulnerable software components.
+- Assess business and technical risks.
+- Prioritize remediation activities.
+- Build a Security Note remediation roadmap.
 
-### Testing
+**Sources and Tools**
+1. Monthly SAP Security Patch Day
+2. Transaction code SNOTE
+3. SOLUTION MANAGER: System Recommendations (sunset by end of 2027)
+4. Cloud ALM: CSA SAP Note
+   CALM CSA "Recommended Security Notes" is another SAP effort to replace SYSREC.
+   <img width="1362" height="292" alt="image" src="https://github.com/user-attachments/assets/41eb1621-66ea-4cef-b576-28e0efdaa2f5" />
+   At the time of writing this one (08/2026), this tool was just released with very simply UI.
+   It shows only relevant notes that affect respective system, but unable to provide comment or change status like in SYSREC. <BR>
+   <BR>
+   Find more detail at [Calculate Security Notes](https://help.sap.com/docs/cloud-alm/applicationhelp/calculating-security-notes)<BR>
+   <img width="450" height="222" alt="image" src="https://github.com/user-attachments/assets/fc616bea-f722-4f8b-9264-d546bfedbb9e" />
+   >NOTE: <BR>
+   >If you don't see **Calculate Security Notes** button, assure that you have authorization **Security Notes Viewer** assigned to your SID by CALM Admin.
+    
+5. SAP RISE 
 
-### Deployment
+###  STEP 2: Risk Assessment
 
-### Validation
+###  STEP 3: Realization
+
+###  STEP 4: Summary Report
+
 
 ## Patch Governance
 
-- Monthly Review
+- Monthly Review: Define KPI for each severity and criticality. Keep in mind that higher CVSS may not pose higher risk than lower CVSS. True criticality depends on your system configurations and asset sensitivity.
+  Just use CVSS as guide, but never ignore low CVSS one.
+- Monthly cycle: 
+  1. Second Tuesday is Security patch day, but not limied to. SAP may publish emergency security patch anytime if it's a serious one.
+  2. Follow through 3-step approach: DISCOVERY --> RISK ASSESSMENT --> REALIZATION --> SUMMARY REPORT
+
 - Emergency Patch Process
+  
+Emergency Patch SLA Recommendation<BR>
+<img width="600" height="210" alt="image" src="https://github.com/user-attachments/assets/62689254-2559-4302-a291-0cc96fa82d22" />
 
-## Vulnerability Scanning
 
+
+## Vulnerability Scanning Scope
 - Infrastructure
 - Operating System
 - Database
 - Applications
+
+## Key Success Criteria
+✅ Complete SAP landscape visibility<BR>
+✅ 100% identification of missing Security Notes<BR>
+✅ Risk-based prioritization rather than patch-count prioritization<BR>
+✅ Alignment with ISO 27001, NIST CSF, DORA, and NIS2 requirements<BR>
+✅ Executive-approved remediation plan<BR>
 
 ---
 

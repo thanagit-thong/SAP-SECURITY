@@ -11,6 +11,9 @@ A community-driven repository of SAP Security, Authorization, Basis Security, Cl
 - Identity and Access Management
 - Authorization Management
 - Authentication Security
+- [Risk Analysis](#risk-analysis)
+  - [X] [Critical Actions](#critical-actions)
+  - [X] [Segregations of Duty](#segregations-of-duty)
 - SAP Basis Security
 - SAP Hana Security
 - SAP Fiori Security
@@ -189,15 +192,6 @@ S_PROGRAM
 S_TCODE
 ```
 
-## Segregation of Duties (SoD)
-
-### Procure to Pay
-
-### Order to Cash
-
-### Record to Report
-
-### Hire to Retire
 
 ## Access Reviews
 
@@ -240,7 +234,16 @@ login/password_history_size
 - Trust Configuration
 
 ---
+# Risk Analysis
 
+## Critical Actions
+- [X] [Data Migration Tools (LSMW/LTMC/Migrate Your Data)](docs/Data-Migration-tool.md)
+
+
+## Segregations of Duty
+
+
+---
 # SAP Basis Security
 
 ## System Hardening

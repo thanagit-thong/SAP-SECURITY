@@ -30,6 +30,7 @@ A community-driven repository of SAP Security, Authorization, Basis Security, Cl
   - [x] sap-security-baseline.md
   - [x] system-hardening-checklist.md
 - [SAP Security Platform](#sap-security-platform)
+- [Control Catalog](docs/Control-Catalog.md)
 - [SAP Security Community and Knowledge Sources](#sap-security-community-and-knowledge-sources)
 - [Quick Reference Library](#quick-reference-library) 
 - [Contributing](#contributing)

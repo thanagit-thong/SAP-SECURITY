@@ -26,9 +26,9 @@ A community-driven repository of SAP Security, Authorization, Basis Security, Cl
 - [Vulnerability and Patch Management](#vulnerability-and-patch-management)
 - AI Security for SAP
 - Incident Response
-- SAP Security Baselines
-  - [x] sap-security-baseline.md
-  - [x] system-hardening-checklist.md
+- [SAP Security Baselines](#sap-security-baselines)
+  - [X] sap-security-baseline.md
+  - [X] system-hardening-checklist.md
 - [SAP Security Platform](#sap-security-platform)
 - [Control Catalog](docs/Control-Catalog.md)
 - [SAP Security Community and Knowledge Sources](#sap-security-community-and-knowledge-sources)
@@ -672,36 +672,135 @@ Emergency Patch SLA Recommendation<BR>
 
 ---
 
-# Security Baselines
+# SAP Security Baselines
 
-## SAP S/4HANA Security Baseline
+SAP Security Baseline is a defined set of minimum security requirements and configuration standards that every SAP system should meet to maintain an acceptable level of security. It serves as a foundation for protecting SAP landscapes against unauthorized access, misconfiguration, privilege abuse, cyber threats, and compliance violations.
 
-## SAP HANA Security Baseline
+The baseline typically covers key areas such as:
 
-## SAP Fiori Security Baseline
+- User and authentication security
+- Privileged access management
+- Secure system configuration
+- RFC and interface security
+- Logging and audit trails
+- Vulnerability and patch management
+- Security monitoring and incident detection
+- etc.
 
-## SAP BTP Security Baseline
+Recent version as of 09/2026: [SAP Security Baseline v2.6 (2025)](docs/Security_Baseline_Template_V2.6.pdf)
 
-## Cloud Application Baselines
+> HINT! <BR> Not everything in standard SAP Security Baseline is valid for your company
+> It depends upon your local regulation and company requirements as well.<BR>
+> For example, minimum Password length may be proposed at 12 characters,  
+![alt text](docs/image/SAP_SBL_PasswordLength.png) 
+> 
+> If your company adheres with [CISA]("https://www.cisa.gov/audiences/small-and-medium-businesses/secure-your-business/require-strong-passwords"), your baseline turns to be 16. <BR>
+![alt text](docs/image/CISA_PasswordLength.png) 
+>
 
-### SuccessFactors
+### Best Practice for Defining Your Own SAP Security Baseline
+The most effective SAP Security Baseline is risk-based, measurable, continuously monitored, and aligned with business objectives, rather than a simple checklist copied from SAP recommendations.
+**1. Start with a Control Framework, Not Technical Settings**
 
-### Ariba
+Avoid beginning with profile parameters or transaction codes.
+Instead, define baseline domains that reflect security objectives:
 
-### Concur
+|              Domain              |                  Objective                  |
+|:---------------------------------|:--------------------------------------------|
+| Identity & Authentication        | Ensure users are properly authenticated     |
+| Privileged Access                | Control and monitor administrative access   |
+| Authorization Management         | Enforce least privilege                     |
+| Secure Configuration             | Prevent insecure system settings            |
+| RFC & Interface Security         | Protect system-to-system communications     |
+| Vulnerability & Patch Management | Reduce exposure to known vulnerabilities    |
+| Logging & Monitoring             | Enable threat detection and investigation   |
+| Data Protection                  | Protect sensitive business data             |
+| Change & Transport Security      | Ensure controlled system changes            |
+| Cloud & Hybrid Security          | Secure SAP BTP and cloud-connected services |
 
-### SAC
 
-### Joule
+Think of the baseline as a [Security Control Catalog]("(docs/Control-Catalog.md)"), not a parameter catalog.
+
+
+**2. Define Controls Using a Standard Template**
+
+See sample at [Security Control Catalog]("(docs/Control-Catalog.md)")
+
+**3.Focus on Risks, Not Transactions**
+
+Many organizations create baselines around Critical Transactions such as:
+SU01
+PFCG
+SM59
+SM19
+
+This becomes difficult to maintain.
+Instead define risks:
+
+| Risk                | Example Controls     |
+|---------------------|----------------------|
+| Unauthorized Access | Password Policy, MFA |
+| Privilege Abuse     | SAP_ALL Monitoring   |
+| System Compromise   | Security Notes       |
+| Data Exfiltration   | Download Monitoring  |
+| Lateral Movement    | RFC Security         |
+| Lack of Detection   | Audit Logging        |
+
+This keeps the baseline relevant through SAP upgrades and migrations.
+
+
+**4. Separate Baseline by SAP Technology**
+
+A common mistake is creating a single baseline for everything.
+Create specific baselines for:
+
+- SAP ECC or S/4HANA
+- SAP BW or SAC, BDC
+- SAP Solution Manager, Focused Run, Cloud ALM
+- SAP BTP (Business Technology Platform)
+- SAP HANA Database
+- SAP Fiori
+- SAP Gateway
+- SAP Integration Suite (CPI)
+- SAP Joule
+- SAP SaaS : SuccessFactor, Concur, Signavio, Ariba, etc.
+- etc.
+
+Each technology introduces different threats and controls.
+
+
+### Benefits of SAP Security Baseline
+
+**1. Reduces Security Risk**
+- Identifies and eliminates insecure configurations.
+- Reduces the likelihood of unauthorized access, data breaches, and privilege escalation.
+
+**2. Establishes a Consistent Security Standard**
+- Ensures all SAP systems are secured according to the same minimum requirements.
+- Simplifies governance across complex SAP landscapes.
+
+**3. Supports Regulatory Compliance**
+- Helps demonstrate alignment with frameworks such as ISO 27001, NIST CSF, NIS2, DORA, SOX, and PCI-DSS.
+- Provides auditable evidence of security controls.
+
+**4. Enables Continuous Security Monitoring**<BR>
+- Defines measurable controls that can be continuously monitored using tools such as SecurityBridge, SAP Focused Run, SIEM, or SAP GRC.
+- Improves visibility into security posture over time.
+
+**5. Improves Operational Efficiency**<BR>
+- Standardizes security reviews and assessments.
+- Allows security teams to focus on exceptions and high-risk findings rather than manual system-by-system validation.
+
 
 ---
 # SAP Security Platform
-- [x] [SecurityBridge](https://securitybridge.com/)
-- [x] [Onapsis](https://onapsis.com/)
-- [x] [Layer7](https://www.layersevensecurity.com/)
-- [X] [Xiting](https://xiting.com/en/)
-- [X] [SAP Enterprise Threat Detection (ETD)](https://www.sap.com/products/financial-management/enterprise-threat-detection.html)
-- [X] [SAP Cloud ALM - CSA](https://support.sap.com/en/alm/sap-cloud-alm/operations/expert-portal/configuration-security-analysis/csa-content.html?isu_page=1)
+- ✅ [SecurityBridge](https://securitybridge.com/)
+- ✅ [Onapsis](https://onapsis.com/)
+- ✅ [Layer7](https://www.layersevensecurity.com/)
+- ✅ [Xiting](https://xiting.com/en/)
+- ✅ [Pathlock CAC](https://pathlock.com/products/cybersecurity-application-controls/)
+- ✅ [SAP Enterprise Threat Detection (ETD)](https://www.sap.com/products/financial-management/enterprise-threat-detection.html)
+- ✅ [SAP Cloud ALM - CSA](https://support.sap.com/en/alm/sap-cloud-alm/operations/expert-portal/configuration-security-analysis/csa-content.html?isu_page=1)
 
 ## ADVANTAGE OF HAVING EXTRA PLATFORM  
 Traditional cyber security tools are blind to the inner workings of an SAP ecosystem.
@@ -755,9 +854,9 @@ Then it's time to change your tool on hands to be anything more advance like Sec
 
 ---
 # SAP Security Community and Knowledge Sources
-- [x] [SAP Insider](https://copenhagen.sapinsider.org/)
-- [X] [SAP Security Forum](https://pages.community.sap.com/topics/security)
-- [X] Recommended articles:
+- ✅ [SAP Insider](https://copenhagen.sapinsider.org/)
+- ✅ [SAP Security Forum](https://pages.community.sap.com/topics/security)
+- ✅ Recommended articles:
   - [SAP Security Awareness: The Control You Can’t Configure](https://www.linkedin.com/pulse/sap-security-awareness-control-you-cant-configure-peter-doyle-tnnle/)
   - [SAP Security: The Foundation of Secure and Compliant SAP Landscapes](https://www.linkedin.com/pulse/sap-security-foundation-secure-compliant-landscapes-sonawane-hc17f/)
   - [Beyond Compliance: SAP Security as Strategic Advantage](https://www.linkedin.com/pulse/beyond-compliance-sap-security-strategic-advantage-jarod-sandham-9fsue/)

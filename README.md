@@ -719,12 +719,12 @@ Instead, define baseline domains that reflect security objectives:
 | Cloud & Hybrid Security          | Secure SAP BTP and cloud-connected services |
 
 
-Think of the baseline as a [Security Control Catalog]("(docs/Control-Catalog.md)"), not a parameter catalog.
+Think of the baseline as a [Security Control Catalog]("docs/Control-Catalog.md"), not a parameter catalog.
 
 
 **2. Define Controls Using a Standard Template**
 
-See sample at [Security Control Catalog]("(docs/Control-Catalog.md)")
+See sample at [Security Control Catalog]("docs/Control-Catalog.md")
 
 **3.Focus on Risks, Not Transactions**
 

@@ -31,6 +31,7 @@ A community-driven repository of SAP Security, Authorization, Basis Security, Cl
   - [X] system-hardening-checklist.md
 - [SAP Security Platform](#sap-security-platform)
 - [Control Catalog](docs/Control-Catalog.md)
+- [SAP Penetration Test](#sap-penetration-test)
 - [SAP Security Community and Knowledge Sources](#sap-security-community-and-knowledge-sources)
 - [Quick Reference Library](#quick-reference-library) 
 - [Contributing](#contributing)
@@ -851,6 +852,510 @@ Up until the demand from corporate cybersecurity and/or ITGC auditor is higher,
 .. or your SAP Security Operations team grow up, 
 .. or you encounter with cybersecurity challenges which force you to go beyonds what Cloud ALM can serve.  
 Then it's time to change your tool on hands to be anything more advance like SecurityBridge, Onapsis, Layer7, ETD, etc.
+
+---
+# SAP Penetration Test
+
+SAP Penetration Testing (SAP Pentest) is a controlled security assessment that simulates real-world attacks against SAP systems to identify vulnerabilities before attackers can exploit them.
+
+Unlike traditional infrastructure penetration testing that focuses on operating systems, databases, and networks, SAP pentesting targets SAP-specific components
+
+> Simple question: <BR>
+> "If an attacker gained access to the network or internet-facing SAP components, what could they do?"
+
+# SAP Pentest Methodology
+
+## Phase 1: Reconnaissance
+
+Collect information about:
+
+- SAP system landscape
+- Hosts
+- Open ports
+- Available services
+
+### Common SAP Ports
+
+| Service | Port |
+|----------|------|
+| SAP Dispatcher | 32XX |
+| SAP Gateway | 33XX |
+| ICM HTTP | 80XX |
+| ICM HTTPS | 443XX |
+| Message Server | 36XX |
+| SAProuter | 3299 |
+| SAP HANA Database | 30015 |
+
+### Key Questions
+
+- Which SAP systems are exposed?
+- Which SAP versions are running?
+- Which services are reachable from the network?
+
+---
+
+## Phase 2: Vulnerability Identification
+
+Review SAP-specific vulnerabilities and misconfigurations.
+
+### Missing Security Patches
+
+Check:
+
+- SAP Security Notes
+- HotNews Notes
+- Kernel vulnerabilities
+
+Typical findings:
+
+- Remote Code Execution (RCE)
+- Authentication bypass
+- Information disclosure
+- Privilege escalation
+
+### Weak Configuration
+
+#### Message Server ACL
+
+Insecure example:
+
+```text
+ms/acl_info = *
+ms/acl_file_int = *
+ms/acl_file_ext = *
+```
+
+Risks:
+
+- Unauthorized system registration
+- Rogue application server registration
+- Internal lateral movement
+- Trust abuse
+
+#### Gateway Security
+
+Insecure example:
+
+```text
+gw/acl_mode = 0
+sec_info = allow *
+reg_info = allow *
+```
+
+Risks:
+
+- RFC abuse
+- External program registration
+- Potential OS command execution
+- Lateral movement between SAP systems
+
+### Weak Authentication
+
+Examples:
+
+- Default passwords
+- Shared technical users
+- SAP_ALL assigned to service accounts
+- Missing MFA for administrators
+
+---
+
+## Phase 3: Authorization Assessment
+
+Many SAP compromises occur through excessive privileges rather than software vulnerabilities.
+
+Typical attack path:
+
+1. Compromise a user account
+2. Escalate privileges
+3. Access sensitive business functions
+4. Maintain persistence
+
+### Critical Authorization Objects
+
+```text
+S_USER_GRP
+S_USER_AGR
+S_USER_PRO
+S_RFC
+S_TABU_DIS
+S_DEVELOP
+S_DATASET
+```
+
+Review:
+
+- Excessive privileges
+- Segregation of Duties (SoD) conflicts
+- Critical transaction access
+- Sensitive table access
+
+---
+
+# SAP Technical Attack Areas
+
+## 1. RFC Security Testing
+
+Evaluate:
+
+- Trusted RFC relationships
+- Stored credentials
+- RFC user permissions
+- Cross-system trust configurations
+
+### Common Finding
+
+```text
+RFC User = SAP_ALL
+```
+
+### Impact
+
+Compromise of one SAP system may lead to compromise of connected systems.
+
+---
+
+## 2. Gateway Security Testing
+
+Review:
+
+### reg_info
+
+Controls which external programs can register with the SAP Gateway.
+
+### sec_info
+
+Controls which systems and users may access registered programs.
+
+### Risks
+
+Misconfiguration may allow:
+
+```text
+SAP → External Program Abuse
+SAP → Potential OS Command Execution
+SAP → Unauthorized RFC Calls
+```
+
+---
+
+## 3. Message Server Security Testing
+
+Review:
+
+```text
+ms/acl_file_int
+ms/acl_file_ext
+ms/acl_info
+```
+
+Particularly dangerous configurations:
+
+```text
+ms/acl_file_int = *
+ms/acl_file_ext = *
+```
+
+### Risks
+
+- Rogue application server registration
+- Information disclosure
+- Service disruption
+- Internal attack pivoting
+- Trust boundary bypass
+
+### Security Principle
+
+> Firewalls protect the perimeter.  
+> Message Server ACLs protect SAP trust relationships.
+
+---
+
+## 4. SAP Fiori Security Testing
+
+### Authentication Review
+
+- MFA implementation
+- SSO configuration
+- Session management
+- Password policies
+
+### Authorization Review
+
+- OData service permissions
+- Catalog assignments
+- Role mappings
+- Privilege escalation opportunities
+
+### Web Security Review
+
+- Cross-Site Scripting (XSS)
+- Cross-Site Request Forgery (CSRF)
+- Clickjacking
+- Broken access control
+
+---
+
+## 5. SAP HANA Security Testing
+
+Review:
+
+- SYSTEM user usage
+- Password policies
+- Audit configuration
+- Privilege assignments
+- Database exposure
+
+### Example Risk
+
+Potential SQL injection exposure:
+
+```sql
+SELECT * FROM USR02
+```
+
+### Impact
+
+- Unauthorized data access
+- Credential disclosure
+- Business data extraction
+- Privilege escalation
+
+---
+
+# Common High-Risk Findings
+
+## SAP_ALL Assigned to Technical Users
+
+Examples:
+
+```text
+SAP_WFRT
+RFC_USERS
+PI_USERS
+INTERFACE_USERS
+```
+
+### Risk
+
+A compromised technical account becomes a full SAP administrator.
+
+### Impact
+
+- User administration
+- Data access
+- Configuration changes
+- Remote execution capabilities
+
+---
+
+## Gateway ACL Disabled
+
+Configuration:
+
+```text
+gw/acl_mode = 0
+```
+
+### Risk
+
+- Unauthorized external program registration
+- RFC abuse
+- Expanded attack surface
+
+---
+
+## Critical SAP Security Notes Missing
+
+Common in legacy environments.
+
+### Potential Impact
+
+- Remote Code Execution
+- Authentication bypass
+- Privilege escalation
+- Information disclosure
+
+---
+
+## Trusted RFC Without Restriction
+
+Attack example:
+
+```text
+Compromise DEV
+    ↓
+Compromise QA
+    ↓
+Compromise PRD
+```
+
+### Risk
+
+Trust relationships may allow attackers to move between systems without additional authentication.
+
+---
+
+## Message Server ACL Misconfiguration
+
+Configuration:
+
+```text
+ms/acl_file_int = *
+ms/acl_file_ext = *
+```
+
+### Risk
+
+- Unauthorized server registration
+- Unauthorized communication
+- Trust exploitation
+- Lateral movement within SAP landscape
+
+---
+
+## Excessive Critical Authorizations
+
+Examples:
+
+```text
+S_RFC
+S_DEVELOP
+S_TABU_DIS
+S_USER_PRO
+```
+
+### Risk
+
+Attackers may gain:
+
+- Sensitive table access
+- User administration rights
+- Program execution privileges
+- Development access
+
+---
+
+# Typical Tools Used
+
+## SAP-Specific Security Tools
+
+### SAP Security Optimization Service (SOS)
+
+Used for:
+
+- Security configuration review
+- SAP Note compliance assessment
+- Security posture evaluation
+
+### SAP EarlyWatch Alert (sunset end of 2027)
+
+Used for:
+
+- Landscape health checks
+- System recommendations
+- Operational security observations
+
+### SAP Code Vulnerability Analyzer
+
+Used for:
+
+- ABAP source code scanning
+- Secure coding assessment
+- Vulnerability detection
+
+
+### SAP BAIP/BTP: Application Vulnerability Report
+
+Security Patch detection within SAP BTP is not included in SYSREC.
+SAP develops an extra app called Application Vulnerability Report (AVR) for this purpose.
+
+It scans BTP Subaccount and map with known CVE, then generate report.
+
+
+<img width="446" height="225" alt="image" src="https://github.com/user-attachments/assets/abba349b-c265-4f60-8443-f827cbba6f1a" />
+<img width="709" height="543" alt="image" src="https://github.com/user-attachments/assets/9145538b-6058-4561-bb1c-09a519227dfc" />
+<img width="709" height="632" alt="image" src="https://github.com/user-attachments/assets/4f32d067-926d-4d99-923c-ac488b0b7aa5" />
+
+
+SOURCE:
+1.	[Application Vulnerability Report](https://influence.sap.com/sap/ino/#/idea/368050/?section=sectionDetails)
+2.	[Introducing Application Vulnerability Report for CF](https://community.sap.com/t5/technology-blog-posts-by-sap/introducing-application-vulnerability-report-for-cloudfoundry-applications/ba-p/14281684)
+
+
+---
+
+## Commercial SAP Security Platforms
+
+You may use capabilities from commercial platform such as Onapsis, SecurityBridge, Pathlock Suite, etc. to accelerate pentest process.
+Check out [SAP Security Platform](#sap-security-platform)
+
+---
+
+## Infrastructure & Network Testing Tools
+
+### Nmap
+
+Used for:
+
+- Port scanning
+- Service discovery
+- Version detection
+
+### Nessus
+
+Used for:
+
+- Vulnerability scanning
+- Configuration assessment
+- Patch verification
+
+### Wireshark
+
+Used for:
+
+- Network traffic analysis
+- SAP protocol inspection
+- Troubleshooting
+
+---
+
+## Application Security Testing Tools
+
+### Burp Suite
+
+Used for:
+
+- Fiori testing
+- Web application assessments
+- Authentication testing
+- API security testing
+
+### OWASP ZAP
+
+Used for:
+
+- Web vulnerability identification
+- Automated scanning
+- Security testing of SAP web interfaces
+
+---
+
+## Authorized Exploitation Frameworks
+
+### Metasploit
+
+Used where permitted for:
+
+- Validation of vulnerabilities
+- Controlled exploitation
+- Attack path verification
+
+> Note: Exploitation should only be performed with explicit approval and within the agreed pentest scope.
+
+## Playbook
+Recommended Pentest Playbook: [https://github.com/SecuritySilverbacks/sap-pentest-playbook](https://github.com/SecuritySilverbacks/sap-pentest-playbook)
+
 
 ---
 # SAP Security Community and Knowledge Sources

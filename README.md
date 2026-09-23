@@ -506,10 +506,10 @@ The primary goals are:
 - Build a Security Note remediation roadmap.
 
 **Sources and Tools**
-1. Monthly SAP Security Patch Day
-2. Transaction code SNOTE
-3. SOLUTION MANAGER: System Recommendations (sunset by end of 2027)
-4. Cloud ALM: CSA SAP Note
+* 1. Monthly SAP Security Patch Day
+* 2. Transaction code SNOTE
+* 3. SOLUTION MANAGER: System Recommendations (sunset by end of 2027)
+* 4. Cloud ALM: CSA SAP Note
    CALM CSA "Recommended Security Notes" is another SAP effort to replace SYSREC.
    <img width="1362" height="292" alt="image" src="https://github.com/user-attachments/assets/41eb1621-66ea-4cef-b576-28e0efdaa2f5" />
    At the time of writing this one (08/2026), this tool was just released with very simply UI.
@@ -520,7 +520,23 @@ The primary goals are:
    >NOTE: <BR>
    >If you don't see **Calculate Security Notes** button, assure that you have authorization **Security Notes Viewer** assigned to your SID by CALM Admin.
     
-5. SAP RISE 
+* 5. SAP BAIP/BTP Application Vulnerability Report
+Security Patch detection within SAP BTP is not included in SYSREC.
+SAP develops an extra app called Application Vulnerability Report (AVR) for this purpose.
+
+It scans BTP Subaccount and map with known CVE, then generate report.
+
+<img width="446" height="225" alt="image" src="https://github.com/user-attachments/assets/abba349b-c265-4f60-8443-f827cbba6f1a" />
+<img width="709" height="543" alt="image" src="https://github.com/user-attachments/assets/9145538b-6058-4561-bb1c-09a519227dfc" />
+<img width="709" height="632" alt="image" src="https://github.com/user-attachments/assets/4f32d067-926d-4d99-923c-ac488b0b7aa5" />
+
+
+SOURCE:
+1.	[Application Vulnerability Report](https://influence.sap.com/sap/ino/#/idea/368050/?section=sectionDetails)
+2.	[Introducing Application Vulnerability Report for CF](https://community.sap.com/t5/technology-blog-posts-by-sap/introducing-application-vulnerability-report-for-cloudfoundry-applications/ba-p/14281684)
+
+
+
 
 ###  STEP 2: Risk Assessment
 
@@ -1263,24 +1279,6 @@ Used for:
 - ABAP source code scanning
 - Secure coding assessment
 - Vulnerability detection
-
-
-### SAP BAIP/BTP: Application Vulnerability Report
-
-Security Patch detection within SAP BTP is not included in SYSREC.
-SAP develops an extra app called Application Vulnerability Report (AVR) for this purpose.
-
-It scans BTP Subaccount and map with known CVE, then generate report.
-
-
-<img width="446" height="225" alt="image" src="https://github.com/user-attachments/assets/abba349b-c265-4f60-8443-f827cbba6f1a" />
-<img width="709" height="543" alt="image" src="https://github.com/user-attachments/assets/9145538b-6058-4561-bb1c-09a519227dfc" />
-<img width="709" height="632" alt="image" src="https://github.com/user-attachments/assets/4f32d067-926d-4d99-923c-ac488b0b7aa5" />
-
-
-SOURCE:
-1.	[Application Vulnerability Report](https://influence.sap.com/sap/ino/#/idea/368050/?section=sectionDetails)
-2.	[Introducing Application Vulnerability Report for CF](https://community.sap.com/t5/technology-blog-posts-by-sap/introducing-application-vulnerability-report-for-cloudfoundry-applications/ba-p/14281684)
 
 
 ---
